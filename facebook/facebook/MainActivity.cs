@@ -20,7 +20,7 @@ namespace facebook
             {
                 new Post
                 {
-                    Comments = 2,
+                    Comments = { new Comment { Name = "Jimmy Newtron", Text = "Lahe"} },
                     Likes = 5,
                     Message = "Hello World!",
                     Name = "Stefan",
@@ -29,7 +29,6 @@ namespace facebook
 
                 new Post
                 {
-                    Comments = 3,
                     Likes = 235235,
                     Message = "Hello World!",
                     Name = "Hindrek"

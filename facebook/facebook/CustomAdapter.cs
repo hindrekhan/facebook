@@ -52,7 +52,7 @@ namespace facebook
             name.Text = items[position].Name;
             likes.Text = items[position].Likes.ToString() + " Likes";
             message.Text = items[position].Message;
-            comments.Text = items[position].Comments.ToString() + " Comments";
+            comments.Text = items[position].Comments.Count.ToString() + " Comments";
 
             image.Visibility = ViewStates.Gone;
             if (items[position].Image != "")
