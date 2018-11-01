@@ -14,11 +14,11 @@ namespace facebook
 {
     class Post
     {
-        public string Name { get; set; }
-        public int Likes { get; set; }
+        public string Name { get; set; } = "";
+        public int Likes { get; set; } = 0;
         public bool Liked { get; set; } = false;
-        public string Message { get; set; }
+        public string Message { get; set; } = "";
         public string Image { get; set; } = "";
-        public List<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

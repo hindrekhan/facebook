@@ -16,11 +16,14 @@ namespace facebook
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            List<Post> posts = new List<Post>()
+            List<Post> posts = new List<Post>
             {
                 new Post
                 {
-                    Comments = { new Comment { Name = "Jimmy Newtron", Text = "Lahe"} },
+                    Comments = new List<Comment>
+                    {
+                        new Comment { Name = "Jimmy Newtron", Text = "Suht lahe"}
+                    },
                     Likes = 5,
                     Message = "Hello World!",
                     Name = "Stefan",
@@ -36,7 +39,7 @@ namespace facebook
             };
 
             ListView listView = FindViewById<ListView>(Resource.Id.listView1);
-            listView.Adapter = new CustomAdapter(this, posts);
+            listView.Adapter = new PostAdapter(this, posts);
         }
     }
 }

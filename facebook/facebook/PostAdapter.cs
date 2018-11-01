@@ -13,12 +13,12 @@ using Android.Widget;
 
 namespace facebook
 {
-    class CustomAdapter : BaseAdapter<Post>
+    class PostAdapter : BaseAdapter<Post>
     {
         List<Post> items;
         Activity context;
 
-        public CustomAdapter(Activity context, List<Post> items) : base()
+        public PostAdapter(Activity context, List<Post> items) : base()
         {
             this.context = context;
             this.items = items;
@@ -40,8 +40,9 @@ namespace facebook
         {
             View view = convertView;
             if (view == null)
-                view = context.LayoutInflater.Inflate(Resource.Layout.CustomRow, null);
+                view = context.LayoutInflater.Inflate(Resource.Layout.PostRow, null);
 
+            var a = Count;
             var name = view.FindViewById<TextView>(Resource.Id.name);
             var likes = view.FindViewById<TextView>(Resource.Id.likes);
             var message = view.FindViewById<TextView>(Resource.Id.message);
@@ -62,7 +63,7 @@ namespace facebook
             }
 
             likeButton.Click += (sender, e) => LikeButton_Click(position, likes);
-
+            comments.Click += (sender, e) => CommentButton_Click(position);
 
             return view;
         }
@@ -87,6 +88,13 @@ namespace facebook
 
             likes.Text = curLikes.ToString() + " Likes";
 
+        }
+
+        private void CommentButton_Click(int pos)
+        {
+            Intent intent = new Intent(context, typeof(CommentActivity));
+
+            context.StartActivity(intent);
         }
     }
 }
