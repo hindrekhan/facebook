@@ -2570,9 +2570,6 @@ namespace facebook
 			// aapt resource value: 0x7f08008d
 			public const int imageView1 = 2131230861;
 			
-			// aapt resource value: 0x7f080093
-			public const int imageView2 = 2131230867;
-			
 			// aapt resource value: 0x7f0800b0
 			public const int info = 2131230896;
 			
@@ -2587,6 +2584,9 @@ namespace facebook
 			
 			// aapt resource value: 0x7f080049
 			public const int left = 2131230793;
+			
+			// aapt resource value: 0x7f080093
+			public const int likeButton = 2131230867;
 			
 			// aapt resource value: 0x7f080092
 			public const int likes = 2131230866;

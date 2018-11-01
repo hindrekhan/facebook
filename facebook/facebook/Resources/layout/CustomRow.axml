@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:padding="8dp"
+	android:background="#ffffffff">
 	<LinearLayout
 		android:orientation="horizontal"
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/linearLayout1" >
+		android:id="@+id/linearLayout1">
 		<ImageView
 			android:src="@drawable/user"
 			android:layout_width="64dp"
@@ -23,19 +26,18 @@
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:id="@+id/name" />
-		
 	</LinearLayout>
-
 	<LinearLayout
 		android:orientation="horizontal"
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/linearLayout3">
+		android:id="@+id/linearLayout3"
+		android:paddingBottom="32dp">
 		<TextView
 			android:text="Message"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceSmall"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:id="@+id/message" />
@@ -44,21 +46,23 @@
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:paddingBottom="16dp"
 		android:id="@+id/linearLayout2">
 		<TextView
 			android:text="Likes"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:id="@+id/likes" />
+			android:id="@+id/likes"
+			android:paddingRight="8dp" />
 		<ImageView
 			android:src="@drawable/like"
 			android:layout_width="24dp"
 			android:layout_height="24dp"
-			android:id="@+id/imageView2" />
+			android:id="@+id/likeButton" />
 		<TextView
 			android:text="comments"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:textAlignment="viewEnd"

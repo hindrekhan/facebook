@@ -16,6 +16,7 @@ namespace facebook
     {
         List<Post> items;
         Activity context;
+        ImageView likeButton;
 
         public CustomAdapter(Activity context, List<Post> items) : base()
         {
@@ -41,13 +42,43 @@ namespace facebook
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout.CustomRow, null);
 
+            var name = view.FindViewById<TextView>(Resource.Id.name);
+            var likes = view.FindViewById<TextView>(Resource.Id.likes);
+            var message = view.FindViewById<TextView>(Resource.Id.message);
+            var comments = view.FindViewById<TextView>(Resource.Id.comments);
+            likeButton = view.FindViewById<ImageView>(Resource.Id.likeButton);
 
-            view.FindViewById<TextView>(Resource.Id.name).Text = items[position].Name;
-            view.FindViewById<TextView>(Resource.Id.likes).Text = items[position].Likes.ToString() + " Likes";
-            view.FindViewById<TextView>(Resource.Id.message).Text = items[position].Message;
-            view.FindViewById<TextView>(Resource.Id.comments).Text = items[position].Comments.ToString() + " Comments";
+            name.Text = items[position].Name;
+            likes.Text = items[position].Likes.ToString() + " Likes";
+            message.Text = items[position].Message;
+            comments.Text = items[position].Comments.ToString() + " Comments";
+
+            likeButton.Click += (sender, e) => LikeButton_Click(position, likes);
+
 
             return view;
+        }
+
+        // https://forums.xamarin.com/discussion/98966/custom-listview-adapter-button-click-give-value-to-edit-text
+        private void LikeButton_Click(int pos, TextView likes)
+        {
+            int curLikes = items[pos].Likes;
+
+            if (items[pos].Liked)
+            {
+                curLikes--;
+            }
+
+            else
+            {
+                curLikes++;
+            }
+
+            items[pos].Liked = !items[pos].Liked;
+            items[pos].Likes = curLikes;
+
+            likes.Text = curLikes.ToString() + " Likes";
+
         }
     }
 }
