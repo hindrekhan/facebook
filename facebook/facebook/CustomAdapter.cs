@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -16,7 +17,6 @@ namespace facebook
     {
         List<Post> items;
         Activity context;
-        ImageView likeButton;
 
         public CustomAdapter(Activity context, List<Post> items) : base()
         {
@@ -46,12 +46,20 @@ namespace facebook
             var likes = view.FindViewById<TextView>(Resource.Id.likes);
             var message = view.FindViewById<TextView>(Resource.Id.message);
             var comments = view.FindViewById<TextView>(Resource.Id.comments);
-            likeButton = view.FindViewById<ImageView>(Resource.Id.likeButton);
+            var image = view.FindViewById<ImageView>(Resource.Id.image);
+            var likeButton = view.FindViewById<ImageView>(Resource.Id.likeButton);
 
             name.Text = items[position].Name;
             likes.Text = items[position].Likes.ToString() + " Likes";
             message.Text = items[position].Message;
             comments.Text = items[position].Comments.ToString() + " Comments";
+
+            image.Visibility = ViewStates.Gone;
+            if (items[position].Image != "")
+            {
+                image.SetImageResource(context.Resources.GetIdentifier(items[position].Image, "drawable", context.PackageName));
+                image.Visibility = ViewStates.Visible;
+            }
 
             likeButton.Click += (sender, e) => LikeButton_Click(position, likes);
 

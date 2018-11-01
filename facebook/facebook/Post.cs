@@ -19,5 +19,6 @@ namespace facebook
         public bool Liked { get; set; } = false;
         public string Message { get; set; }
         public int Comments { get; set; }
+        public string Image { get; set; } = "";
     }
 }
