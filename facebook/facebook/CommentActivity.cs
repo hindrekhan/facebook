@@ -19,7 +19,10 @@ namespace facebook
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            SetContentView(Resource.Layout.activity_main);
+
+            //ListView listView = FindViewById<ListView>(Resource.Id.listView1);
+            //listView.Adapter = new PostAdapter(this, posts);
         }
     }
 }

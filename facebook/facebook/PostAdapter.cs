@@ -38,11 +38,12 @@ namespace facebook
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            // https://stackoverflow.com/questions/38263854/click-method-inside-getview-called-multiple-times
+            bool result = false;
             View view = convertView;
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout.PostRow, null);
 
-            var a = Count;
             var name = view.FindViewById<TextView>(Resource.Id.name);
             var likes = view.FindViewById<TextView>(Resource.Id.likes);
             var message = view.FindViewById<TextView>(Resource.Id.message);
@@ -62,14 +63,14 @@ namespace facebook
                 image.Visibility = ViewStates.Visible;
             }
 
-            likeButton.Click += (sender, e) => LikeButton_Click(position, likes);
-            comments.Click += (sender, e) => CommentButton_Click(position);
+            likeButton.Click += delegate { LikeButton_Click(position); };
+            comments.Click += delegate { CommentButton_Click(); };
 
             return view;
         }
 
         // https://forums.xamarin.com/discussion/98966/custom-listview-adapter-button-click-give-value-to-edit-text
-        private void LikeButton_Click(int pos, TextView likes)
+        public void LikeButton_Click(int pos)
         {
             int curLikes = items[pos].Likes;
 
@@ -86,11 +87,11 @@ namespace facebook
             items[pos].Liked = !items[pos].Liked;
             items[pos].Likes = curLikes;
 
+            var likes = context.FindViewById<TextView>(Resource.Id.likes);
             likes.Text = curLikes.ToString() + " Likes";
-
         }
 
-        private void CommentButton_Click(int pos)
+        private void CommentButton_Click()
         {
             Intent intent = new Intent(context, typeof(CommentActivity));
 

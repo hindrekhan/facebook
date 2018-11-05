@@ -22,7 +22,7 @@ namespace facebook
                 {
                     Comments = new List<Comment>
                     {
-                        new Comment { Name = "Jimmy Newtron", Text = "Suht lahe"}
+                        new Comment { Name = "Jimmy Neutron", Text = "Suht lahe"}
                     },
                     Likes = 5,
                     Message = "Hello World!",
