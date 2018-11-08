@@ -29,13 +29,44 @@ namespace facebook
                     Name = "Stefan",
                     Image = "cat"
                 },
-
                 new Post
                 {
                     Likes = 235235,
                     Message = "Hello World!",
                     Name = "Hindrek"
-                }
+                },
+                new Post
+                {
+                    Comments = new List<Comment>
+                    {
+                        new Comment { Name = "Jimmy Neutron", Text = "Suht lahe"}
+                    },
+                    Likes = 74123436,
+                    Message = "Hello World!",
+                    Name = "Stefan",
+                    Image = "dog"
+                },
+                new Post
+                {
+                    Comments = new List<Comment>
+                    {
+                        new Comment { Name = "Jimmy Neutron", Text = "Suht lahe"}
+                    },
+                    Likes = 63,
+                    Message = "Hello World!",
+                    Name = "Stefan",
+                },
+                new Post
+                {
+                    Comments = new List<Comment>
+                    {
+                        new Comment { Name = "Jimmy Neutron", Text = "Suht lahe"}
+                    },
+                    Likes = 7432,
+                    Message = "Hello World!",
+                    Name = "Stefan",
+                    Image = "child"
+                },
             };
 
             ListView listView = FindViewById<ListView>(Resource.Id.listView1);

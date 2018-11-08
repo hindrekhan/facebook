@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Newtonsoft.Json;
 using Android.App;
 using Android.Content;
 using Android.Content.Res;
@@ -17,6 +18,7 @@ namespace facebook
     {
         List<Post> items;
         Activity context;
+        
 
         public PostAdapter(Activity context, List<Post> items) : base()
         {
@@ -38,11 +40,14 @@ namespace facebook
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            // https://stackoverflow.com/questions/38263854/click-method-inside-getview-called-multiple-times
             bool result = false;
             View view = convertView;
+
             if (view == null)
+            {
+                result = true;
                 view = context.LayoutInflater.Inflate(Resource.Layout.PostRow, null);
+            }
 
             var name = view.FindViewById<TextView>(Resource.Id.name);
             var likes = view.FindViewById<TextView>(Resource.Id.likes);
@@ -63,14 +68,18 @@ namespace facebook
                 image.Visibility = ViewStates.Visible;
             }
 
-            likeButton.Click += delegate { LikeButton_Click(position); };
-            comments.Click += delegate { CommentButton_Click(); };
-
+            likeButton.Click += delegate { LikeButton_Click(position, likes); };
+            if (result)
+            {
+                
+                comments.Click += delegate { CommentButton_Click(position); };
+            }
+           
             return view;
         }
 
         // https://forums.xamarin.com/discussion/98966/custom-listview-adapter-button-click-give-value-to-edit-text
-        public void LikeButton_Click(int pos)
+        public void LikeButton_Click(int pos, TextView likes)
         {
             int curLikes = items[pos].Likes;
 
@@ -87,14 +96,14 @@ namespace facebook
             items[pos].Liked = !items[pos].Liked;
             items[pos].Likes = curLikes;
 
-            var likes = context.FindViewById<TextView>(Resource.Id.likes);
             likes.Text = curLikes.ToString() + " Likes";
         }
 
-        private void CommentButton_Click()
+        private void CommentButton_Click(int pos)
         {
             Intent intent = new Intent(context, typeof(CommentActivity));
-
+            intent.PutExtra("comments", JsonConvert.SerializeObject(items[pos].Comments));
+            
             context.StartActivity(intent);
         }
     }

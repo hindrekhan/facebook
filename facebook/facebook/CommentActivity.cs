@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Newtonsoft.Json;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -19,10 +19,12 @@ namespace facebook
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.activity_comment);
 
-            //ListView listView = FindViewById<ListView>(Resource.Id.listView1);
-            //listView.Adapter = new PostAdapter(this, posts);
+            List<Comment> comments = JsonConvert.DeserializeObject<List<Comment>>(Intent.GetStringExtra("comments"));
+
+            ListView listView = FindViewById<ListView>(Resource.Id.listView1);
+            listView.Adapter = new CommentAdapter(this, comments);
         }
     }
 }
