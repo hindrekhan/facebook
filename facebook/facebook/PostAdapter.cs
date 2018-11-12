@@ -40,12 +40,10 @@ namespace facebook
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            bool result = false;
             View view = convertView;
 
             if (view == null)
             {
-                result = true;
                 view = context.LayoutInflater.Inflate(Resource.Layout.PostRow, null);
             }
 
@@ -68,19 +66,20 @@ namespace facebook
                 image.Visibility = ViewStates.Visible;
             }
 
-            likeButton.Click += delegate { LikeButton_Click(position, likes); };
-            if (result)
-            {
-                
-                comments.Click += delegate { CommentButton_Click(position); };
-            }
+            likeButton.Click += LikeButton_Click;
+
+            likeButton.Tag = position;
+            likes.Tag = position;
+            comments.Click += delegate { CommentButton_Click(position); };
            
             return view;
         }
 
         // https://forums.xamarin.com/discussion/98966/custom-listview-adapter-button-click-give-value-to-edit-text
-        public void LikeButton_Click(int pos, TextView likes)
+        public void LikeButton_Click(object sender, EventArgs e)
         {
+            var LikeButton = (ImageView)sender;
+            var pos = (int)LikeButton.Tag;
             int curLikes = items[pos].Likes;
 
             if (items[pos].Liked)
@@ -95,6 +94,8 @@ namespace facebook
 
             items[pos].Liked = !items[pos].Liked;
             items[pos].Likes = curLikes;
+
+            var likes = context.FindViewById<TextView>(Resource.Id.likes);
 
             likes.Text = curLikes.ToString() + " Likes";
         }
