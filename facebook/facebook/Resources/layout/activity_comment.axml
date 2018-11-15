@@ -6,10 +6,63 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="#ffe3f2fd">
+	<LinearLayout
+		android:orientation="vertical"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout1">
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout1">
+		<TextView
+			android:text="Nimi"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/textView1" />
+		<android.support.design.widget.TextInputEditText
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:id="@+id/addCommentName" />
+	</LinearLayout>
+		<LinearLayout
+			android:orientation="horizontal"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/linearLayout2">
+			<TextView
+				android:text="Sisu"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:id="@+id/textView2" />
+			<android.support.design.widget.TextInputEditText
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:id="@+id/addCommentContent" />
+		</LinearLayout>
+		<Button
+		android:text="Lisa postitus"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/addComment"/>
 	<ListView
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:id="@+id/listView1" />
+	</LinearLayout>
+
+
 </RelativeLayout>

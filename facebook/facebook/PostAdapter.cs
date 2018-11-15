@@ -18,7 +18,7 @@ namespace facebook
     {
         List<Post> items;
         Activity context;
-        
+        List<TextView> likesTexts = new List<TextView>(new TextView[10]);
 
         public PostAdapter(Activity context, List<Post> items) : base()
         {
@@ -70,6 +70,8 @@ namespace facebook
 
             likeButton.Tag = position;
             likes.Tag = position;
+            if (likesTexts[position] == null)
+                likesTexts[position] = likes;
             comments.Click += delegate { CommentButton_Click(position); };
            
             return view;
@@ -95,8 +97,8 @@ namespace facebook
             items[pos].Liked = !items[pos].Liked;
             items[pos].Likes = curLikes;
 
-            var likes = context.FindViewById<TextView>(Resource.Id.likes);
-
+            var likes = likesTexts[pos];
+            var a = (int)likes.Tag;
             likes.Text = curLikes.ToString() + " Likes";
         }
 

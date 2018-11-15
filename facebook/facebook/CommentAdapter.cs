@@ -42,8 +42,14 @@ namespace facebook
 
             if (view == null)
             {
-                view = context.LayoutInflater.Inflate(Resource.Layout.PostRow, null);
+                view = context.LayoutInflater.Inflate(Resource.Layout.CommentRow, null);
             }
+
+            var name = view.FindViewById<TextView>(Resource.Id.name);
+            var text = view.FindViewById<TextView>(Resource.Id.comment);
+
+            name.Text = items[position].Name;
+            text.Text = items[position].Text;
 
             return view;
         }

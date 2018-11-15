@@ -10,13 +10,17 @@ namespace facebook
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        List<Post> posts;
+        ListView listView;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            List<Post> posts = new List<Post>
+
+            posts = new List<Post>
             {
                 new Post
                 {
@@ -69,7 +73,24 @@ namespace facebook
                 },
             };
 
-            ListView listView = FindViewById<ListView>(Resource.Id.listView1);
+            var addPost = FindViewById<Button>(Resource.Id.addPost);
+            addPost.Click += AddPost_Click;
+
+            listView = FindViewById<ListView>(Resource.Id.listView1);
+            listView.Adapter = new PostAdapter(this, posts);
+        }
+
+        private void AddPost_Click(object sender, System.EventArgs e)
+        {
+            var name = FindViewById<EditText>(Resource.Id.addPostName);
+            var content = FindViewById<EditText>(Resource.Id.addPostContent);
+
+            posts.Add(new Post
+            {
+                Name = name.Text,
+                Message = content.Text
+            });
+
             listView.Adapter = new PostAdapter(this, posts);
         }
     }
